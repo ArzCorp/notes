@@ -9,8 +9,9 @@ module.exports = {
 		path: path.resolve(__dirname, './dist'),
 		filename: 'bundle.js',
 	},
+	mode: 'development',
+	devtool: 'inline-source-map',
 	devServer: {
-		compress: true,
 		port: 3000,
 		static: {
 			directory: path.resolve(__dirname, './dist'),
