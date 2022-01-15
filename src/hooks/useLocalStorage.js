@@ -11,7 +11,7 @@ export default function useLocalStorage({ key }) {
 
 	const getStorage = () => {
 		try {
-			const values = window.localStorage.getItem(key)
+			const values = JSON.parse(window.localStorage.getItem(key)) || []
 			setData(values)
 		} catch (error) {
 			console.error(error.message)
