@@ -18,30 +18,40 @@ const ErrorForm = styled.p`
 
 export default function SignInForm() {
 	const { error, register } = useRegister({
-		onSubmit: () => console.info('Registro con exito'),
+		onSubmit: () => {
+			handleReset()
+			console.info('Registro con exito')
+		},
 	})
-	const { values, errors, touched, handleChange, handleBlur, handleSubmit } =
-		useFormik({
-			onSubmit: (data) => register(data),
-			initialValues: {
-				name: '',
-				userName: '',
-				password: '',
-				email: '',
-			},
-			validationSchema: Yup.object().shape({
-				name: Yup.string().required('Campo requerido'),
-				password: Yup.string()
-					.min(8, 'Mínimo 8 caracteres')
-					.required('Campo requerido'),
-				userName: Yup.string()
-					.min(6, 'Mínimo 6 caracteres')
-					.required('Campo requerido'),
-				email: Yup.string()
-					.email('Correo no válido')
-					.required('Campo requerido'),
-			}),
-		})
+	const {
+		values,
+		errors,
+		touched,
+		handleChange,
+		handleBlur,
+		handleSubmit,
+		handleReset,
+	} = useFormik({
+		onSubmit: (data) => {
+			register(data)
+		},
+		initialValues: {
+			name: '',
+			userName: '',
+			password: '',
+			email: '',
+		},
+		validationSchema: Yup.object().shape({
+			name: Yup.string().required('Campo requerido'),
+			password: Yup.string()
+				.min(8, 'Mínimo 8 caracteres')
+				.required('Campo requerido'),
+			userName: Yup.string()
+				.min(6, 'Mínimo 6 caracteres')
+				.required('Campo requerido'),
+			email: Yup.string().email('Correo no válido').required('Campo requerido'),
+		}),
+	})
 	return (
 		<form onSubmit={handleSubmit}>
 			<TextInput

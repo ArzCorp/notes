@@ -6,6 +6,7 @@ export default function useRegister({ onSubmit }) {
 	const [error, setError] = useState('')
 
 	const register = (data) => {
+		setError('')
 		const emailExist = storage.find(
 			(user) => user.email.toLowerCase() === data.email.toLowerCase()
 		)
