@@ -1,14 +1,16 @@
 import React from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
+import useLocalStorage from '../../hooks/useLocalStorage'
 
 import Button from '../Button'
 import TextInput from '../TextInput'
 
 export default function SignInForm() {
+	const { setStorage } = useLocalStorage({ key: 'users' })
 	const { values, errors, touched, handleChange, handleBlur, handleSubmit } =
 		useFormik({
-			onSubmit: (data) => console.log(data),
+			onSubmit: (data) => setStorage(data),
 			initialValues: {
 				name: '',
 				userName: '',
