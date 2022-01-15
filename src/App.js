@@ -1,10 +1,10 @@
 import React from 'react'
-import Logo from './components/Logo'
+import SignIn from './pages/SignIn'
 
 export default function App() {
 	return (
-		<div className="app">
-			<Logo />
+		<div>
+			<SignIn />
 		</div>
 	)
 }
