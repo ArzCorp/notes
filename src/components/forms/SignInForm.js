@@ -1,16 +1,28 @@
 import React from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
-import useLocalStorage from '../../hooks/useLocalStorage'
+import styled from 'styled-components'
+
+import { SECONDARY_COLOR } from '../../assets/colors'
+import { SMALL_TEXT } from '../../assets/fonts'
 
 import Button from '../Button'
 import TextInput from '../TextInput'
+import useRegister from '../../hooks/useRegister'
+
+const ErrorForm = styled.p`
+	color: ${SECONDARY_COLOR};
+	font-size: ${SMALL_TEXT};
+	margin-top: 10px;
+`
 
 export default function SignInForm() {
-	const { setStorage } = useLocalStorage({ key: 'users' })
+	const { error, register } = useRegister({
+		onSubmit: () => console.info('Registro con exito'),
+	})
 	const { values, errors, touched, handleChange, handleBlur, handleSubmit } =
 		useFormik({
-			onSubmit: (data) => setStorage(data),
+			onSubmit: (data) => register(data),
 			initialValues: {
 				name: '',
 				userName: '',
@@ -70,6 +82,7 @@ export default function SignInForm() {
 				onChange={handleChange}
 			/>
 			<Button type="submit">Crear cuenta</Button>
+			{error ? <ErrorForm>{error}</ErrorForm> : null}
 		</form>
 	)
 }
