@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import Logo from './Logo'
+import UserImage from './UserImage'
 
 import { PRIMARY_LIGHT_COLOR } from '../assets/colors'
 
@@ -18,6 +19,7 @@ export default function Header() {
 	return (
 		<Container>
 			<Logo />
+			<UserImage />
 		</Container>
 	)
 }
