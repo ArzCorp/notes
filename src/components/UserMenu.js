@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import useLocalStorage from '../hooks/useLocalStorage'
+import useUser from '../hooks/useUser'
 
 import { SMALL_TEXT } from '../assets/fonts'
 import { DARK_COLOR, WHITE_COLOR } from '../assets/colors'
@@ -40,10 +40,9 @@ const DropdownItem = styled.ul`
 	}
 `
 
-export default function UserImage() {
+export default function UserMenu() {
 	const [open, setOpen] = useState(false)
-	const { storage: user, cleanStorage } = useLocalStorage({ key: 'user' })
-
+	const { user, logOut } = useUser()
 	return (
 		<Container className="container-dropdown" onClick={() => setOpen(!open)}>
 			<Image
@@ -54,7 +53,7 @@ export default function UserImage() {
 				alt="usuario"
 			/>
 			<Dropdown className="dropdown" open={open}>
-				<DropdownItem className="dropdown-item" onClick={() => cleanStorage()}>
+				<DropdownItem className="dropdown-item" onClick={() => logOut()}>
 					Cerrar sesión
 				</DropdownItem>
 				<DropdownItem

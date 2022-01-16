@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import useLocalStorage from '../hooks/useLocalStorage'
 import Logo from './Logo'
-import UserImage from './UserImage'
+import UserMenu from './UserMenu'
 
 import { PRIMARY_LIGHT_COLOR } from '../assets/colors'
 
@@ -20,7 +20,7 @@ export default function Header() {
 	return (
 		<Container>
 			<Logo />
-			{user.email ? <UserImage /> : null}
+			{user.email ? <UserMenu /> : null}
 		</Container>
 	)
 }
