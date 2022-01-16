@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-
+import useLocalStorage from '../hooks/useLocalStorage'
 import Logo from './Logo'
 import UserImage from './UserImage'
 
@@ -16,10 +16,11 @@ const Container = styled.div`
 `
 
 export default function Header() {
+	const { storage: user } = useLocalStorage({ key: 'user' })
 	return (
 		<Container>
 			<Logo />
-			<UserImage />
+			{user.email ? <UserImage /> : null}
 		</Container>
 	)
 }
