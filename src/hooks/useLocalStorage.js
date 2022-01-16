@@ -3,18 +3,14 @@ import { useEffect, useState } from 'react'
 export default function useLocalStorage({ key }) {
 	const [data, setData] = useState([])
 
-	const setStorage = (items) => {
+	const setItem = (items) => {
 		const values = JSON.parse(window.localStorage.getItem(key)) || []
 		const data = [...values, items]
 		window.localStorage.setItem(key, JSON.stringify(data))
 	}
 
-	const setUser = (item) => {
-		window.localStorage.setItem('user', JSON.stringify(item))
-	}
-
-	const cleanStorage = () => {
-		window.localStorage.setItem(key, JSON.stringify({}))
+	const setStorage = (items) => {
+		window.localStorage.setItem(key, JSON.stringify(items))
 	}
 
 	const getStorage = () => {
@@ -30,5 +26,10 @@ export default function useLocalStorage({ key }) {
 		getStorage()
 	}, [key])
 
-	return { storage: data, setStorage, getStorage, setUser, cleanStorage }
+	return {
+		storage: data,
+		setItem,
+		getStorage,
+		setStorage,
+	}
 }
