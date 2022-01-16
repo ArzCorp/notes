@@ -1,10 +1,6 @@
 import React from 'react'
-import SignIn from './pages/SignIn'
+import LogIn from './pages/LogIn'
 
 export default function App() {
-	return (
-		<div>
-			<SignIn />
-		</div>
-	)
+	return <LogIn />
 }
