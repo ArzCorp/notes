@@ -13,6 +13,10 @@ export default function useLocalStorage({ key }) {
 		window.localStorage.setItem('user', JSON.stringify(item))
 	}
 
+	const cleanStorage = () => {
+		window.localStorage.setItem(key, JSON.stringify({}))
+	}
+
 	const getStorage = () => {
 		try {
 			const values = JSON.parse(window.localStorage.getItem(key)) || []
@@ -26,5 +30,5 @@ export default function useLocalStorage({ key }) {
 		getStorage()
 	}, [key])
 
-	return { storage: data, setStorage, getStorage, setUser }
+	return { storage: data, setStorage, getStorage, setUser, cleanStorage }
 }
