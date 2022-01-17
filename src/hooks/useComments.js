@@ -23,5 +23,10 @@ export default function useComments({ onSubmit }) {
 		if (onSubmit) return onSubmit()
 	}
 
-	return { comments: storage, error, setComment, getComments: getStorage }
+	return {
+		comments: storage.reverse(),
+		error,
+		setComment,
+		getComments: getStorage,
+	}
 }

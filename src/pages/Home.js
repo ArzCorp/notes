@@ -18,6 +18,10 @@ const Container = styled.div`
 	justify-content: center;
 	background-color: ${WHITE_COLOR};
 `
+const Comments = styled.div`
+	height: calc(100vh - 180px);
+	overflow: auto;
+`
 
 export default function Home() {
 	const { comments, getComments } = useComments({})
@@ -26,9 +30,11 @@ export default function Home() {
 		<>
 			<Header />
 			<Container row>
-				{comments.map((comment) => (
-					<Comment key={comment.id} comment={comment} />
-				))}
+				<Comments>
+					{comments.map((comment) => (
+						<Comment key={comment.id} comment={comment} />
+					))}
+				</Comments>
 				<NewComment handleSubmit={getComments} />
 			</Container>
 		</>

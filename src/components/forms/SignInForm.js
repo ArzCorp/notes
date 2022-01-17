@@ -9,6 +9,7 @@ import { SMALL_TEXT } from '../../assets/fonts'
 import Button from '../Button'
 import TextInput from '../TextInput'
 import useRegister from '../../hooks/useRegister'
+import { useNavigate } from 'react-router-dom'
 
 const ErrorForm = styled.p`
 	color: ${SECONDARY_COLOR};
@@ -57,12 +58,13 @@ const UserImage = styled.img`
 `
 
 export default function SignInForm() {
+	const navigate = useNavigate()
 	const file = useRef()
 	const [image, setImage] = useState('')
 	const { error, register } = useRegister({
 		onSubmit: () => {
 			handleReset()
-			console.info('Registro con exito')
+			navigate('/ingresar')
 		},
 	})
 	const {
