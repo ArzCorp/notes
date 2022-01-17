@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import useUser from '../hooks/useUser'
+import { useNavigate } from 'react-router-dom'
 
 import { SMALL_TEXT } from '../assets/fonts'
 import { DARK_COLOR, WHITE_COLOR } from '../assets/colors'
@@ -41,6 +42,7 @@ const DropdownItem = styled.ul`
 `
 
 export default function UserMenu() {
+	const navigate = useNavigate()
 	const [open, setOpen] = useState(false)
 	const { user, logOut } = useUser()
 	return (
@@ -53,12 +55,18 @@ export default function UserMenu() {
 				alt="usuario"
 			/>
 			<Dropdown className="dropdown" open={open}>
-				<DropdownItem className="dropdown-item" onClick={() => logOut()}>
+				<DropdownItem
+					className="dropdown-item"
+					onClick={() => {
+						navigate('/ingresar')
+						logOut()
+					}}
+				>
 					Cerrar sesión
 				</DropdownItem>
 				<DropdownItem
 					className="dropdown-item"
-					onClick={() => console.log('click 2')}
+					onClick={() => navigate('/configuracion')}
 				>
 					Configuraciones
 				</DropdownItem>

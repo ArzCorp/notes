@@ -1,5 +1,6 @@
 import React from 'react'
 import { useFormik } from 'formik'
+import { useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
 import styled from 'styled-components'
 import useLogin from '../../hooks/useLogin'
@@ -17,10 +18,11 @@ const ErrorForm = styled.p`
 `
 
 export default function LogInForm() {
+	const navigate = useNavigate()
 	const { error, logIn } = useLogin({
 		onSubmit: () => {
 			handleReset()
-			console.info('Registro con exito')
+			navigate('/inicio')
 		},
 	})
 	const {
@@ -40,9 +42,7 @@ export default function LogInForm() {
 			email: '',
 		},
 		validationSchema: Yup.object().shape({
-			password:
-				Yup.string()
-				.required('Campo requerido'),
+			password: Yup.string().required('Campo requerido'),
 			email: Yup.string().email('Correo no válido').required('Campo requerido'),
 		}),
 	})
