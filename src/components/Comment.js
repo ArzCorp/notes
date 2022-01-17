@@ -46,6 +46,7 @@ const Date = styled.li`
 
 const CommentContainer = styled.p`
 	color: ${DARK_COLOR};
+	word-break: break-word;
 	font-size: ${NORMAL_TEXT};
 	font-weight: 400;
 	margin-top: 10px;

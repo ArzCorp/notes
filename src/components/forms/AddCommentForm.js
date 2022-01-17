@@ -29,7 +29,7 @@ const ErrorForm = styled.p`
 	margin: 10px 0px;
 `
 
-export default function CommentForm() {
+export default function CommentForm({ onSubmit }) {
 	const { setComment } = useComments({ onSubmit: () => handleReset() })
 	const {
 		values,
@@ -40,7 +40,10 @@ export default function CommentForm() {
 		handleBlur,
 		handleReset,
 	} = useFormik({
-		onSubmit: (data) => setComment(data),
+		onSubmit: (data) => {
+			setComment(data)
+			onSubmit()
+		},
 		initialValues: {
 			comment: '',
 		},
