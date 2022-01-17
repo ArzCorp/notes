@@ -1,12 +1,12 @@
 import React from 'react'
 import { useFormik } from 'formik'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
 import styled from 'styled-components'
 import useLogin from '../../hooks/useLogin'
 
-import { SECONDARY_COLOR } from '../../assets/colors'
-import { SMALL_TEXT } from '../../assets/fonts'
+import { DARK_COLOR, SECONDARY_COLOR } from '../../assets/colors'
+import { NORMAL_TEXT, SMALL_TEXT } from '../../assets/fonts'
 
 import Button from '../Button'
 import TextInput from '../TextInput'
@@ -14,6 +14,12 @@ import TextInput from '../TextInput'
 const ErrorForm = styled.p`
 	color: ${SECONDARY_COLOR};
 	font-size: ${SMALL_TEXT};
+	margin-top: 10px;
+`
+const Register = styled.p`
+	font-size ${NORMAL_TEXT};
+	color: ${DARK_COLOR};
+	text-align: center;
 	margin-top: 10px;
 `
 
@@ -69,6 +75,9 @@ export default function LogInForm() {
 			/>
 			<Button type="submit">Iniciar sesión</Button>
 			{error ? <ErrorForm>{error}</ErrorForm> : null}
+			<Link to="/registro">
+				<Register>Crear cuenta</Register>
+			</Link>
 		</form>
 	)
 }
