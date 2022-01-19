@@ -23,13 +23,13 @@ const Img = styled.img`
 	object-fit: cover;
 `
 
-export default function newComment({ handleSubmit }) {
+export default function newComment() {
 	const { user } = useUser()
 
 	return (
 		<Container>
 			<Img src={user.userImage} alt={user.userName} />
-			<AddCommentForm onSubmit={handleSubmit} />
+			<AddCommentForm />
 		</Container>
 	)
 }
