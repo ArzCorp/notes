@@ -11,26 +11,33 @@ export default function CommentsContext({ children }) {
 
 	const setComment = (comment) => {
 		const newComment = {
+			id: comments.length + 1,
+			active: true,
 			ownerId: user.id,
 			ownerImage: user.userImage,
 			commentOwner: user.userName,
 			...comment,
 		}
 
-		const newData = [...comments, newComment].reverse()
+		const newData = [...comments, newComment]
 
 		setComments(newData)
 		setStorage(newData)
 	}
 
-	const state = {
-		comments: comments,
-		setComment,
+	const getComments = () => {
+		const data = storage.filter((comment) => comment.active)
+		if (data.length > 0) return setComments(data)
 	}
 
 	useEffect(() => {
-		setComments(storage)
+		getComments()
 	}, [storage])
+
+	const state = {
+		comments: comments.reverse(),
+		setComment,
+	}
 
 	return <Context.Provider value={state}>{children}</Context.Provider>
 }
