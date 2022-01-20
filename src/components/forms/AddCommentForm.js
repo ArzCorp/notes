@@ -42,7 +42,7 @@ export default function CommentForm() {
 	} = useFormik({
 		onSubmit: (data) => {
 			setComment(data)
-			onSubmit()
+			handleReset()
 		},
 		initialValues: {
 			comment: '',
