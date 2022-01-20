@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { Context } from '../context/CommentsContext'
 import styled from 'styled-components'
-import { DARK_COLOR } from '../assets/colors'
+import { DARK_COLOR, PRIMARY_COLOR } from '../assets/colors'
 import { NORMAL_TEXT, SMALL_TEXT } from '../assets/fonts'
 
 const Container = styled.div`
@@ -51,16 +52,31 @@ const CommentContainer = styled.p`
 	font-weight: 400;
 	margin-top: 10px;
 `
+const Icon = styled.i`
+	color: ${DARK_COLOR};
+	font-size: ${NORMAL_TEXT};
+	cursor: pointer;
+	transform: all;
+	transition: 2s;
+	&:hover {
+		color: ${PRIMARY_COLOR};
+	}
+`
 
 export default function newComment({ comment }) {
+	const { removeComment } = useContext(Context)
 	return (
 		<Container>
 			<UserData>
 				<DataImage>
-					<Image src={comment.userImage} alt={comment.commentOwner} />
+					<Image src={comment.ownerImage} alt={comment.commentOwner} />
 				</DataImage>
 				<UserName>{comment.commentOwner}</UserName>
 				<Date>{comment.date}</Date>
+				<Icon
+					className="fas fa-trash-alt"
+					onClick={() => removeComment(comment.id)}
+				/>
 			</UserData>
 			<CommentContainer>{comment.comment}</CommentContainer>
 		</Container>

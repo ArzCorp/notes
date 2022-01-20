@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Navigate } from 'react-router-dom'
 import styled from 'styled-components'
 import useUser from '../hooks/useUser'
@@ -8,7 +8,7 @@ import { WHITE_COLOR } from '../assets/colors'
 import Header from '../components/Header'
 import Comment from '../components/Comment'
 import NewComment from '../components/NewComment'
-import useComments from '../hooks/useComments'
+import { Context } from '../context/CommentsContext'
 
 const Container = styled.div`
 	height: calc(100vh - 60px);
@@ -24,7 +24,7 @@ const Comments = styled.div`
 `
 
 export default function Home() {
-	const { comments, getComments } = useComments({})
+	const { comments, setComment } = useContext(Context)
 
 	return (
 		<>
@@ -35,7 +35,7 @@ export default function Home() {
 						<Comment key={comment.id} comment={comment} />
 					))}
 				</Comments>
-				<NewComment handleSubmit={getComments} />
+				<NewComment handleSubmit={setComment} />
 			</Container>
 		</>
 	)

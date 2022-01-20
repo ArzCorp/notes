@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
-import useComments from '../../hooks/useComments'
+import { Context } from '../../context/CommentsContext'
 
 import Button from '../Button'
 import styled from 'styled-components'
@@ -29,8 +29,8 @@ const ErrorForm = styled.p`
 	margin: 10px 0px;
 `
 
-export default function CommentForm({ onSubmit }) {
-	const { setComment } = useComments({ onSubmit: () => handleReset() })
+export default function CommentForm() {
+	const { setComment } = useContext(Context)
 	const {
 		values,
 		errors,
@@ -42,7 +42,7 @@ export default function CommentForm({ onSubmit }) {
 	} = useFormik({
 		onSubmit: (data) => {
 			setComment(data)
-			onSubmit()
+			handleReset()
 		},
 		initialValues: {
 			comment: '',
