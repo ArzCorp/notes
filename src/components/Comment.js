@@ -57,7 +57,7 @@ export default function newComment({ comment }) {
 		<Container>
 			<UserData>
 				<DataImage>
-					<Image src={comment.userImage} alt={comment.commentOwner} />
+					<Image src={comment.ownerImage} alt={comment.commentOwner} />
 				</DataImage>
 				<UserName>{comment.commentOwner}</UserName>
 				<Date>{comment.date}</Date>
