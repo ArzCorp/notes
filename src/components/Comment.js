@@ -64,7 +64,7 @@ const Icon = styled.i`
 `
 
 export default function newComment({ comment }) {
-	const { removeComment } = useContext(Context)
+	const { dispatch } = useContext(Context)
 	return (
 		<Container>
 			<UserData>
@@ -75,10 +75,10 @@ export default function newComment({ comment }) {
 				<Date>{comment.date}</Date>
 				<Icon
 					className="fas fa-trash-alt"
-					onClick={() => removeComment(comment.id)}
+					onClick={() => dispatch({ type: 'comment/remove', payload: comment })}
 				/>
 			</UserData>
-			<CommentContainer>{comment.comment}</CommentContainer>
+			<CommentContainer>{comment.message}</CommentContainer>
 		</Container>
 	)
 }

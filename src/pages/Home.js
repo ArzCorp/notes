@@ -1,7 +1,5 @@
 import React, { useContext } from 'react'
-import { Navigate } from 'react-router-dom'
 import styled from 'styled-components'
-import useUser from '../hooks/useUser'
 
 import { WHITE_COLOR } from '../assets/colors'
 
@@ -9,6 +7,7 @@ import Header from '../components/Header'
 import Comment from '../components/Comment'
 import NewComment from '../components/NewComment'
 import { Context } from '../context/CommentsContext'
+import { BIG_TEXT } from '../assets/fonts'
 
 const Container = styled.div`
 	height: calc(100vh - 60px);
@@ -23,6 +22,13 @@ const Comments = styled.div`
 	overflow: auto;
 `
 
+const P = styled.p`
+	height: calc(100vh - 180px);
+	text-align: center;
+	font-size: ${BIG_TEXT};
+	font-weight: 700;
+`
+
 export default function Home() {
 	const { comments, setComment } = useContext(Context)
 
@@ -30,11 +36,15 @@ export default function Home() {
 		<>
 			<Header />
 			<Container row>
-				<Comments>
-					{comments.map((comment) => (
-						<Comment key={comment.id} comment={comment} />
-					))}
-				</Comments>
+				{comments.length === 0 ? (
+					<P>Agrega un nuevo comentario</P>
+				) : (
+					<Comments>
+						{comments.map((comment) => (
+							<Comment key={comment.id} comment={comment} />
+						))}
+					</Comments>
+				)}
 				<NewComment handleSubmit={setComment} />
 			</Container>
 		</>

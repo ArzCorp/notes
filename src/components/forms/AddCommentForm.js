@@ -30,7 +30,7 @@ const ErrorForm = styled.p`
 `
 
 export default function CommentForm() {
-	const { setComment } = useContext(Context)
+	const { dispatch } = useContext(Context)
 	const {
 		values,
 		errors,
@@ -41,7 +41,7 @@ export default function CommentForm() {
 		handleReset,
 	} = useFormik({
 		onSubmit: (data) => {
-			setComment(data)
+			dispatch({ type: 'comment/add', payload: data })
 			handleReset()
 		},
 		initialValues: {

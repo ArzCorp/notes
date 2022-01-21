@@ -1,32 +1,33 @@
-import { useState } from 'react'
+import { useState, useReducer } from 'react'
 import useLocalStorage from './useLocalStorage'
 import useUser from './useUser'
 
+const initialState = {
+	comments: [],
+	error: '',
+}
+
 export default function useComments({ onSubmit }) {
-	const { storage, setItem, getStorage } = useLocalStorage({ key: 'comments' })
-	const [error, setError] = useState('')
-	const { user } = useUser()
-	const idComemnt = storage.length + 1
-
 	const date = new Date().toISOString().split('T')[0]
+	const { storage, setItem, getStorage } = useLocalStorage({ key: 'comments' })
+	const { user } = useUser()
 
-	const setComment = (data) => {
-		const comment = {
-			...data,
-			id: idComemnt,
-			userImage: user.userImage,
-			commentOwner: user.userName,
-			date: date,
+	const reducer = (state, action) => {
+		switch (action.type) {
+			case 'comment/add': {
+				const newComment = {
+					id: Math.random() * (1 - 1000) + 1,
+				}
+				return state.comments.concat(newComment)
+			}
 		}
-		setItem(comment)
-		getStorage()
-		if (onSubmit) return onSubmit()
 	}
 
+	const [state, dispatch] = useReducer(reducer, initialState)
+
 	return {
-		comments: storage.reverse(),
-		error,
-		setComment,
-		getComments: getStorage,
+		comments: state.comments,
+		error: state.error,
+		dispatch,
 	}
 }
