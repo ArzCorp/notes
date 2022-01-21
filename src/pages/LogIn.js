@@ -1,7 +1,9 @@
 import React from 'react'
+import useUser from '../hooks/useUser'
 import styled from 'styled-components'
 import { WHITE_COLOR } from '../assets/colors'
 
+import { Navigate } from 'react-router-dom'
 import LogInForm from '../components/forms/LogInForm'
 import Header from '../components/Header'
 
@@ -14,8 +16,10 @@ const Container = styled.div`
 `
 
 export default function LogIn() {
+	const { user } = useUser()
 	return (
 		<>
+			{user.userName ? <Navigate to="/inicio" /> : null}
 			<Header />
 			<Container>
 				<LogInForm />
