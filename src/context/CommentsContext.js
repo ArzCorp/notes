@@ -1,50 +1,86 @@
-import React, { createContext, useEffect, useState } from 'react'
+import React, { createContext, useReducer } from 'react'
 import useUser from '../hooks/useUser'
-import useLocaleStorage from '../hooks/useLocalStorage'
 
 export const Context = createContext({ value: 'storage' })
 
 export default function CommentsContext({ children }) {
-	const date = new Date().toLocaleDateString('es-mx')
-	const { setItem, storage, setStorage } = useLocaleStorage({
-		key: 'comments',
-	})
+	const initialState = {
+		comments: [],
+		selectedComment: {},
+	}
+	const date = new Date().toISOString().split('T')[0]
 	const { user } = useUser()
-	const [comments, setComments] = useState(storage)
 
-	const setComment = (comment) => {
-		const id = comments.length + 1
+	const reducer = (state, action) => {
+		const { payload, type } = action
 
-		const newComment = {
-			id: `${id}_${comment.comment}`,
-			ownerId: user.id,
-			date: date,
-			ownerImage: user.userImage,
-			commentOwner: user.userName,
-			...comment,
+		switch (type) {
+			case 'comment/add': {
+				const newComment = {
+					id: Math.abs(Math.floor(Math.random() * (1 - 1000)) + 1),
+					date: date,
+					active: true,
+					message: payload.comment,
+					commentOwner: user.userName,
+					ownerImage: user.userImage,
+				}
+
+				return {
+					...state,
+					comments: state.comments.concat(newComment),
+				}
+			}
+			case 'comment/remove': {
+				const updated = state.comments.map((comment) => {
+					if (comment.id === payload.id) {
+						return {
+							...comment,
+							active: !comment.active,
+						}
+					}
+
+					return comment
+				})
+
+				return {
+					...state,
+					comments: updated,
+				}
+			}
+			case 'comment/selected': {
+				return {
+					...state,
+					selectedComment: payload,
+				}
+			}
+			case 'comment/edit': {
+				const updated = state.comments.map((comment) => {
+					if (comment.id === payload.id) {
+						return payload
+					}
+					return comment
+				})
+
+				return {
+					...state,
+					comments: updated,
+					selectedComment: {},
+				}
+			}
+			default:
+				return {
+					...state,
+					comments: state,
+				}
 		}
-
-		const newData = [...comments, newComment]
-
-		setComments(newData)
-		setItem(newComment)
 	}
 
-	const removeComment = (id) => {
-		const newData = comments.filter((comment) => comment.id !== id)
-
-		setComments(newData)
-		setStorage(newData)
-	}
-
-	useEffect(() => {
-		setComments(storage)
-	}, [storage])
+	const [comments, dispatch] = useReducer(reducer, initialState)
 
 	const state = {
-		comments: comments.reverse(),
-		setComment,
-		removeComment,
+		comments: comments.comments.filter((comment) => comment.active),
+		selectedComment: comments.selectedComment,
+		dispatch,
 	}
 
 	return <Context.Provider value={state}>{children}</Context.Provider>

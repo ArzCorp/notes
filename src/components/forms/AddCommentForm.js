@@ -30,7 +30,8 @@ const ErrorForm = styled.p`
 `
 
 export default function CommentForm() {
-	const { setComment } = useContext(Context)
+	const { dispatch, selectedComment } = useContext(Context)
+
 	const {
 		values,
 		errors,
@@ -41,16 +42,35 @@ export default function CommentForm() {
 		handleReset,
 	} = useFormik({
 		onSubmit: (data) => {
-			setComment(data)
+			if (selectedComment.message) {
+				return editComment(data)
+			}
 			handleReset()
+			return addComment(data)
 		},
+		enableReinitialize: true,
 		initialValues: {
-			comment: '',
+			comment: selectedComment.message || '',
 		},
 		validationSchema: Yup.object().shape({
 			comment: Yup.string().required('Campo requerido'),
 		}),
 	})
+
+	const addComment = (data) => {
+		dispatch({ type: 'comment/add', payload: data })
+	}
+
+	const editComment = (data) => {
+		dispatch({
+			type: 'comment/edit',
+			payload: {
+				...selectedComment,
+				message: data.comment,
+			},
+		})
+	}
+
 	return (
 		<Form onSubmit={handleSubmit}>
 			<div>
@@ -61,13 +81,27 @@ export default function CommentForm() {
 					onKeyDown={handleBlur}
 					onChange={handleChange}
 					autoComplete="off"
-					placeholder="Agregar comentario..."
+					placeholder={
+						selectedComment.message
+							? 'Editar comentario...'
+							: 'Agregar comentario...'
+					}
 				/>
 				{errors.comment && touched.comment ? (
 					<ErrorForm>{errors.comment}</ErrorForm>
 				) : null}
 			</div>
-			<Button type="submit">Enviar</Button>
+			<Button type="submit">
+				{selectedComment.message ? 'Editar' : 'Enviar'}
+			</Button>
+			{selectedComment.message ? (
+				<Button
+					type="button"
+					onClick={() => dispatch({ type: 'comment/selected', payload: {} })}
+				>
+					cancelar
+				</Button>
+			) : null}
 		</Form>
 	)
 }

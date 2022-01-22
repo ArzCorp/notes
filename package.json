@@ -1,6 +1,6 @@
 {
-	"name": "comment-section",
-	"version": "1.2.1",
+	"name": "notes",
+	"version": "1.3.1",
 	"description": "It is a project to create a comment section using React and Styled Components",
 	"main": "./src/index.js",
 	"scripts": {
@@ -34,10 +34,10 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/ArzateCompany/comment-section.git"
+		"url": "git+https://github.com/ArzateCompany/notes.git"
 	},
 	"bugs": {
-		"url": "https://github.com/ArzateCompany/comment-section/issues"
+		"url": "https://github.com/ArzateCompany/notes/issues"
 	},
-	"homepage": "https://github.com/ArzateCompany/comment-section#readme"
+	"homepage": "https://github.com/ArzateCompany/notes#readme"
 }
