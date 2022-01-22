@@ -77,6 +77,12 @@ export default function newComment({ comment }) {
 					className="fas fa-trash-alt"
 					onClick={() => dispatch({ type: 'comment/remove', payload: comment })}
 				/>
+				<Icon
+					className="fas fa-pencil-alt"
+					onClick={() =>
+						dispatch({ type: 'comment/selected', payload: comment })
+					}
+				/>
 			</UserData>
 			<CommentContainer>{comment.message}</CommentContainer>
 		</Container>

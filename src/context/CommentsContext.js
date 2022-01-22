@@ -4,7 +4,10 @@ import useUser from '../hooks/useUser'
 export const Context = createContext({ value: 'storage' })
 
 export default function CommentsContext({ children }) {
-	const initialState = []
+	const initialState = {
+		comments: [],
+		selectedComment: {},
+	}
 	const date = new Date().toISOString().split('T')[0]
 	const { user } = useUser()
 
@@ -22,10 +25,13 @@ export default function CommentsContext({ children }) {
 					ownerImage: user.userImage,
 				}
 
-				return state.concat(newComment)
+				return {
+					...state,
+					comments: state.comments.concat(newComment),
+				}
 			}
 			case 'comment/remove': {
-				const updated = state.map((comment) => {
+				const updated = state.comments.map((comment) => {
 					if (comment.id === payload.id) {
 						return {
 							...comment,
@@ -36,17 +42,44 @@ export default function CommentsContext({ children }) {
 					return comment
 				})
 
-				return updated
+				return {
+					...state,
+					comments: updated,
+				}
+			}
+			case 'comment/selected': {
+				return {
+					...state,
+					selectedComment: payload,
+				}
+			}
+			case 'comment/edit': {
+				const updated = state.comments.map((comment) => {
+					if (comment.id === payload.id) {
+						return payload
+					}
+					return comment
+				})
+
+				return {
+					...state,
+					comments: updated,
+					selectedComment: {},
+				}
 			}
 			default:
-				return state
+				return {
+					...state,
+					comments: state,
+				}
 		}
 	}
 
 	const [comments, dispatch] = useReducer(reducer, initialState)
 
 	const state = {
-		comments: comments.filter((comment) => comment.active),
+		comments: comments.comments.filter((comment) => comment.active),
+		selectedComment: comments.selectedComment,
 		dispatch,
 	}
 
