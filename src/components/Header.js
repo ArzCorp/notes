@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
-import { Context } from '../context/UserContext'
+import { UserContext } from '../context/UserContext'
 
 import Logo from './Logo'
 import UserMenu from './UserMenu'
@@ -17,7 +17,7 @@ const Container = styled.div`
 `
 
 export default function Header() {
-	const { user } = useContext(Context)
+	const { user } = useContext(UserContext)
 	return (
 		<Container>
 			<Logo />

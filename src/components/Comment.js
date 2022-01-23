@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Context } from '../context/CommentsContext'
+import { CommentsContext } from '../context/CommentsContext'
 import styled from 'styled-components'
 import { DARK_COLOR, PRIMARY_COLOR } from '../assets/colors'
 import { BIG_TEXT_SIZE, SMALL_TEXT_SIZE } from '../assets/fonts'
@@ -64,7 +64,7 @@ const Icon = styled.i`
 `
 
 export default function newComment({ comment }) {
-	const { dispatch } = useContext(Context)
+	const { dispatch } = useContext(CommentsContext)
 	return (
 		<Container>
 			<UserData>

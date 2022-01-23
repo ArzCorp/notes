@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
-import { Context } from '../context/UserContext'
+import { UserContext } from '../context/UserContext'
 
 import { SMALL_TEXT_SIZE } from '../assets/fonts'
 import { DARK_COLOR, WHITE_COLOR } from '../assets/colors'
@@ -44,7 +44,7 @@ const DropdownItem = styled.ul`
 export default function UserMenu() {
 	const navigate = useNavigate()
 	const [open, setOpen] = useState(false)
-	const { user, dispatch } = useContext(Context)
+	const { user, dispatch } = useContext(UserContext)
 	return (
 		<Container className="container-dropdown" onClick={() => setOpen(!open)}>
 			<Image

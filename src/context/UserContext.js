@@ -1,8 +1,8 @@
 import React, { createContext, useReducer } from 'react'
 
-export const Context = createContext({ value: 'storage' })
+export const UserContext = createContext({ value: 'storage' })
 
-export default function UserContext({ children }) {
+export default function UserProvider({ children }) {
 	const initialState = {
 		users: [],
 		user: {},
@@ -19,6 +19,7 @@ export default function UserContext({ children }) {
 					users: state.users.concat(payload),
 				}
 			}
+
 			case 'user/edit': {
 				return {
 					...state,
@@ -26,12 +27,14 @@ export default function UserContext({ children }) {
 					message: 'Datos actualizados',
 				}
 			}
+
 			case 'user/logIn': {
 				return {
 					...state,
 					user: payload,
 				}
 			}
+
 			case 'user/logOut': {
 				return {
 					...state,
@@ -52,5 +55,5 @@ export default function UserContext({ children }) {
 		message: state.message,
 	}
 
-	return <Context.Provider value={store}>{children}</Context.Provider>
+	return <UserContext.Provider value={store}>{children}</UserContext.Provider>
 }

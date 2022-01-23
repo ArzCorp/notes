@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import styled from 'styled-components'
-import { Context } from '../../context/UserContext'
+import { UserContext } from '../../context/UserContext'
 
 import { DARK_COLOR, SECONDARY_COLOR } from '../../assets/colors'
 import { SMALL_TEXT_SIZE } from '../../assets/fonts'
@@ -57,7 +57,7 @@ const UserImage = styled.img`
 `
 
 export default function SettingsForm() {
-	const { user, message, dispatch } = useContext(Context)
+	const { user, message, dispatch } = useContext(UserContext)
 	const [image, setImage] = useState('')
 	const file = useRef()
 	const { values, errors, touched, handleChange, handleBlur, handleSubmit } =

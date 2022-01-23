@@ -1,11 +1,11 @@
 import { useContext, useState } from 'react'
-import { Context } from '../context/UserContext'
+import { UserContext } from '../context/UserContext'
 import useLocalStorage from './useLocalStorage'
 
 export default function useLogin({ onSubmit }) {
-	const { storage } = useLocalStorage({ key: 'users' })
+	const { storage } = useLocalStorage('users')
 	const [error, setError] = useState('')
-	const { dispatch } = useContext(Context)
+	const { dispatch } = useContext(UserContext)
 
 	const logIn = (data) => {
 		setError('')

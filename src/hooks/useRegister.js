@@ -1,10 +1,10 @@
 import { useContext, useState } from 'react'
-import { Context } from '../context/UserContext'
+import { UserContext } from '../context/UserContext'
 import useLocalStorage from './useLocalStorage'
 
 export default function useRegister({ onSubmit }) {
 	const { storage } = useLocalStorage({ key: 'users' })
-	const { dispatch } = useContext(Context)
+	const { dispatch } = useContext(UserContext)
 	const [error, setError] = useState('')
 
 	const register = (data) => {

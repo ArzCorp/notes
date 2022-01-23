@@ -5,7 +5,7 @@ import { WHITE_COLOR } from '../assets/colors'
 import { Navigate } from 'react-router-dom'
 import LogInForm from '../components/forms/LogInForm'
 import Header from '../components/Header'
-import { Context } from '../context/UserContext'
+import { UserContext } from '../context/UserContext'
 
 const Container = styled.div`
 	height: calc(100vh - 60px);
@@ -16,7 +16,8 @@ const Container = styled.div`
 `
 
 export default function LogIn() {
-	const { user } = useContext(Context)
+	const { user } = useContext(UserContext)
+	console.log({ user })
 	return (
 		<>
 			{user.userName ? <Navigate to="/inicio" /> : null}

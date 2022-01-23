@@ -1,9 +1,9 @@
 import React, { createContext, useContext, useReducer } from 'react'
-import { Context as UserContext } from './UserContext'
+import { UserContext } from './UserContext'
 
-export const Context = createContext({ value: 'storage' })
+export const CommentsContext = createContext({ value: 'storage' })
 
-export default function CommentsContext({ children }) {
+export default function CommentsProvider({ children }) {
 	const initialState = {
 		comments: [],
 		selectedComment: {},
@@ -83,5 +83,9 @@ export default function CommentsContext({ children }) {
 		dispatch,
 	}
 
-	return <Context.Provider value={state}>{children}</Context.Provider>
+	return (
+		<CommentsContext.Provider value={state}>
+			{children}
+		</CommentsContext.Provider>
+	)
 }

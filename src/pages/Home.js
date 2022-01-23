@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
-import { Context } from '../context/CommentsContext'
-import { Context as UserContext } from '../context/UserContext'
+import { CommentsContext } from '../context/CommentsContext'
+import { UserContext } from '../context/UserContext'
 
 import { WHITE_COLOR } from '../assets/colors'
 import { BIG_TEXT_SIZE } from '../assets/fonts'
@@ -33,7 +33,7 @@ const P = styled.p`
 
 export default function Home() {
 	const { user } = useContext(UserContext)
-	const { comments, setComment } = useContext(Context)
+	const { comments } = useContext(CommentsContext)
 
 	return (
 		<>
@@ -49,7 +49,7 @@ export default function Home() {
 						))}
 					</Comments>
 				)}
-				<NewComment handleSubmit={setComment} />
+				<NewComment />
 			</Container>
 		</>
 	)

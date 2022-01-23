@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
-import { Context } from '../../context/CommentsContext'
+import { CommentsContext } from '../../context/CommentsContext'
 
 import Button from '../Button'
 import styled from 'styled-components'
@@ -30,7 +30,7 @@ const ErrorForm = styled.p`
 `
 
 export default function CommentForm() {
-	const { dispatch, selectedComment } = useContext(Context)
+	const { dispatch, selectedComment } = useContext(CommentsContext)
 
 	const {
 		values,
