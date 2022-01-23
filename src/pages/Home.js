@@ -7,7 +7,7 @@ import Header from '../components/Header'
 import Comment from '../components/Comment'
 import NewComment from '../components/NewComment'
 import { Context } from '../context/CommentsContext'
-import { BIG_TEXT } from '../assets/fonts'
+import { BIG_TEXT_SIZE } from '../assets/fonts'
 
 const Container = styled.div`
 	height: calc(100vh - 60px);
@@ -25,7 +25,7 @@ const Comments = styled.div`
 const P = styled.p`
 	height: calc(100vh - 180px);
 	text-align: center;
-	font-size: ${BIG_TEXT};
+	font-size: ${BIG_TEXT_SIZE};
 	font-weight: 700;
 `
 

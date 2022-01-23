@@ -5,14 +5,14 @@ import styled from 'styled-components'
 import useUser from '../../hooks/useUser'
 
 import { DARK_COLOR, SECONDARY_COLOR } from '../../assets/colors'
-import { SMALL_TEXT } from '../../assets/fonts'
+import { SMALL_TEXT_SIZE } from '../../assets/fonts'
 
 import Button from '../Button'
 import TextInput from '../TextInput'
 
 const ErrorForm = styled.p`
 	color: ${SECONDARY_COLOR};
-	font-size: ${SMALL_TEXT};
+	font-size: ${SMALL_TEXT_SIZE};
 	margin-top: 10px;
 `
 

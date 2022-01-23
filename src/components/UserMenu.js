@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import useUser from '../hooks/useUser'
 import { useNavigate } from 'react-router-dom'
 
-import { SMALL_TEXT } from '../assets/fonts'
+import { SMALL_TEXT_SIZE } from '../assets/fonts'
 import { DARK_COLOR, WHITE_COLOR } from '../assets/colors'
 
 const Container = styled.div`
@@ -33,7 +33,7 @@ const Dropdown = styled.ul`
 `
 
 const DropdownItem = styled.ul`
-	font-size: ${SMALL_TEXT};
+	font-size: ${SMALL_TEXT_SIZE};
 	color: ${DARK_COLOR};
 	margin-bottom: 10px;
 	&:hover {

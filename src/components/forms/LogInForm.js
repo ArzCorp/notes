@@ -6,18 +6,18 @@ import styled from 'styled-components'
 import useLogin from '../../hooks/useLogin'
 
 import { DARK_COLOR, SECONDARY_COLOR } from '../../assets/colors'
-import { NORMAL_TEXT, SMALL_TEXT } from '../../assets/fonts'
+import { NORMAL_TEXT_SIZE, SMALL_TEXT_SIZE } from '../../assets/fonts'
 
 import Button from '../Button'
 import TextInput from '../TextInput'
 
 const ErrorForm = styled.p`
 	color: ${SECONDARY_COLOR};
-	font-size: ${SMALL_TEXT};
+	font-size: ${SMALL_TEXT_SIZE};
 	margin-top: 10px;
 `
 const Register = styled.p`
-	font-size ${NORMAL_TEXT};
+	font-size ${NORMAL_TEXT_SIZE};
 	color: ${DARK_COLOR};
 	text-align: center;
 	margin-top: 10px;

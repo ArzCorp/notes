@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { DARK_COLOR, PRIMARY_LIGHT_COLOR } from '../assets/colors'
-import { NORMAL_TEXT } from '../assets/fonts'
+import { NORMAL_TEXT_SIZE } from '../assets/fonts'
 
 const ButtonStyles = styled.button`
 	width: 100%;
@@ -10,7 +10,7 @@ const ButtonStyles = styled.button`
 	border: 1px solid ${DARK_COLOR};
 	border-radius: 10px;
 	background-color: ${PRIMARY_LIGHT_COLOR};
-	font-size: ${NORMAL_TEXT};
+	font-size: ${NORMAL_TEXT_SIZE};
   font-weight: 700;
 	cursor: pointer;
   transition: 0.2s ease-out;
