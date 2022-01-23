@@ -41,7 +41,7 @@ export default function Home() {
 			<Header />
 			<Container row>
 				{comments.length === 0 ? (
-					<P>Agrega un nuevo comentario</P>
+					<P>Agrega una nota nueva.</P>
 				) : (
 					<Comments>
 						{comments.map((comment) => (

@@ -82,9 +82,7 @@ export default function CommentForm() {
 					onChange={handleChange}
 					autoComplete="off"
 					placeholder={
-						selectedComment.message
-							? 'Editar comentario...'
-							: 'Agregar comentario...'
+						selectedComment.message ? 'Editar nota...' : 'Agregar nota...'
 					}
 				/>
 				{errors.comment && touched.comment ? (
