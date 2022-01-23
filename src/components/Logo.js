@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { Context } from '../context/UserContext'
 import styled from 'styled-components'
-import useUser from '../hooks/useUser'
 
 import { DARK_COLOR } from '../assets/colors'
 import { BIG_TEXT_SIZE, STRONG_FONT } from '../assets/fonts'
@@ -14,7 +14,7 @@ const P = styled.p`
 `
 
 export default function Logo() {
-	const { user } = useUser()
+	const { user } = useContext(Context)
 	return (
 		<Link to={user.email ? '/inicio' : '/ingresar'}>
 			<P>Notes</P>

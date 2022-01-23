@@ -1,13 +1,15 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
+import { Context } from '../context/CommentsContext'
+import { Context as UserContext } from '../context/UserContext'
 
 import { WHITE_COLOR } from '../assets/colors'
+import { BIG_TEXT_SIZE } from '../assets/fonts'
 
 import Header from '../components/Header'
 import Comment from '../components/Comment'
 import NewComment from '../components/NewComment'
-import { Context } from '../context/CommentsContext'
-import { BIG_TEXT_SIZE } from '../assets/fonts'
+import { Navigate } from 'react-router-dom'
 
 const Container = styled.div`
 	height: calc(100vh - 60px);
@@ -30,10 +32,12 @@ const P = styled.p`
 `
 
 export default function Home() {
+	const { user } = useContext(UserContext)
 	const { comments, setComment } = useContext(Context)
 
 	return (
 		<>
+			{user.email ? null : <Navigate to="/ingresar" />}
 			<Header />
 			<Container row>
 				{comments.length === 0 ? (

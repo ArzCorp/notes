@@ -1,5 +1,5 @@
-import React, { createContext, useReducer } from 'react'
-import useUser from '../hooks/useUser'
+import React, { createContext, useContext, useReducer } from 'react'
+import { Context as UserContext } from './UserContext'
 
 export const Context = createContext({ value: 'storage' })
 
@@ -9,7 +9,7 @@ export default function CommentsContext({ children }) {
 		selectedComment: {},
 	}
 	const date = new Date().toISOString().split('T')[0]
-	const { user } = useUser()
+	const { user } = useContext(UserContext)
 
 	const reducer = (state, action) => {
 		const { payload, type } = action

@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
-import useLocalStorage from '../hooks/useLocalStorage'
+import { Context } from '../context/UserContext'
+
 import Logo from './Logo'
 import UserMenu from './UserMenu'
 
@@ -16,7 +17,7 @@ const Container = styled.div`
 `
 
 export default function Header() {
-	const { storage: user } = useLocalStorage({ key: 'user' })
+	const { user } = useContext(Context)
 	return (
 		<Container>
 			<Logo />
