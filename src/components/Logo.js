@@ -17,7 +17,7 @@ export default function Logo() {
 	const { user } = useUser()
 	return (
 		<Link to={user.email ? '/inicio' : '/ingresar'}>
-			<P>Comment section</P>
+			<P>Notes</P>
 		</Link>
 	)
 }
