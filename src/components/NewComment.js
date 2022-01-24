@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
+import { UserContext } from '../context/UserContext'
 
-import useUser from '../hooks/useUser'
 import AddCommentForm from './forms/AddCommentForm'
 
 const Container = styled.div`
@@ -24,7 +24,7 @@ const Img = styled.img`
 `
 
 export default function newComment() {
-	const { user } = useUser()
+	const { user } = useContext(UserContext)
 
 	return (
 		<Container>

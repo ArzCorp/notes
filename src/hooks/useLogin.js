@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { UserContext } from '../context/UserContext'
 import useLocalStorage from './useLocalStorage'
-import useUser from './useUser'
 
 export default function useLogin({ onSubmit }) {
+	const { storage } = useLocalStorage('users')
 	const [error, setError] = useState('')
-	const { storage } = useLocalStorage({ key: 'users' })
-	const { setUser } = useUser()
+	const { dispatch } = useContext(UserContext)
 
 	const logIn = (data) => {
 		setError('')
@@ -13,7 +13,7 @@ export default function useLogin({ onSubmit }) {
 		const password = storage.find((user) => user.password === data.password)
 
 		if (!email || !password) return setError('Datos proporcionados incorrectos')
-		setUser(email)
+		dispatch({ type: 'user/logIn', payload: email })
 		if (onSubmit) return onSubmit()
 	}
 

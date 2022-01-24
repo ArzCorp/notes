@@ -1,13 +1,15 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
+import { CommentsContext } from '../context/CommentsContext'
+import { UserContext } from '../context/UserContext'
 
 import { WHITE_COLOR } from '../assets/colors'
+import { BIG_TEXT_SIZE } from '../assets/fonts'
 
 import Header from '../components/Header'
 import Comment from '../components/Comment'
 import NewComment from '../components/NewComment'
-import { Context } from '../context/CommentsContext'
-import { BIG_TEXT } from '../assets/fonts'
+import { Navigate } from 'react-router-dom'
 
 const Container = styled.div`
 	height: calc(100vh - 60px);
@@ -25,19 +27,21 @@ const Comments = styled.div`
 const P = styled.p`
 	height: calc(100vh - 180px);
 	text-align: center;
-	font-size: ${BIG_TEXT};
+	font-size: ${BIG_TEXT_SIZE};
 	font-weight: 700;
 `
 
 export default function Home() {
-	const { comments, setComment } = useContext(Context)
+	const { user } = useContext(UserContext)
+	const { comments } = useContext(CommentsContext)
 
 	return (
 		<>
+			{user.email ? null : <Navigate to="/ingresar" />}
 			<Header />
 			<Container row>
 				{comments.length === 0 ? (
-					<P>Agrega un nuevo comentario</P>
+					<P>Agrega una nota nueva.</P>
 				) : (
 					<Comments>
 						{comments.map((comment) => (
@@ -45,7 +49,7 @@ export default function Home() {
 						))}
 					</Comments>
 				)}
-				<NewComment handleSubmit={setComment} />
+				<NewComment />
 			</Container>
 		</>
 	)

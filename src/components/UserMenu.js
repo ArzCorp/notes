@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import styled from 'styled-components'
-import useUser from '../hooks/useUser'
 import { useNavigate } from 'react-router-dom'
+import { UserContext } from '../context/UserContext'
 
-import { SMALL_TEXT } from '../assets/fonts'
+import { SMALL_TEXT_SIZE } from '../assets/fonts'
 import { DARK_COLOR, WHITE_COLOR } from '../assets/colors'
 
 const Container = styled.div`
@@ -33,7 +33,7 @@ const Dropdown = styled.ul`
 `
 
 const DropdownItem = styled.ul`
-	font-size: ${SMALL_TEXT};
+	font-size: ${SMALL_TEXT_SIZE};
 	color: ${DARK_COLOR};
 	margin-bottom: 10px;
 	&:hover {
@@ -44,7 +44,7 @@ const DropdownItem = styled.ul`
 export default function UserMenu() {
 	const navigate = useNavigate()
 	const [open, setOpen] = useState(false)
-	const { user, logOut } = useUser()
+	const { user, dispatch } = useContext(UserContext)
 	return (
 		<Container className="container-dropdown" onClick={() => setOpen(!open)}>
 			<Image
@@ -59,7 +59,7 @@ export default function UserMenu() {
 					className="dropdown-item"
 					onClick={() => {
 						navigate('/ingresar')
-						logOut()
+						dispatch({ type: 'user/logOut' })
 					}}
 				>
 					Cerrar sesión

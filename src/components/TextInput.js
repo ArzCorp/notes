@@ -7,7 +7,7 @@ import {
 	PRIMARY_LIGHT_COLOR,
 	SECONDARY_COLOR,
 } from '../assets/colors'
-import { NORMAL_TEXT, SMALL_TEXT } from '../assets/fonts'
+import { NORMAL_TEXT_SIZE, SMALL_TEXT_SIZE } from '../assets/fonts'
 
 const Container = styled.div`
 	width: 100%;
@@ -20,7 +20,7 @@ const Container = styled.div`
 	color: ${DARK_COLOR};
 `
 const Label = styled.label`
-	font-size: ${NORMAL_TEXT};
+	font-size: ${NORMAL_TEXT_SIZE};
 	display: block;
 	font-weight: 700;
 	margin-bottom: 5px;
@@ -35,11 +35,11 @@ const Input = styled.input.attrs((props) => ({
 	outline: ${PRIMARY_COLOR};
 	border: 1px solid ${DARK_COLOR};
 	border-radius: 5px;
-	font-size: ${NORMAL_TEXT};
+	font-size: ${NORMAL_TEXT_SIZE};
 `
 const Error = styled.p`
 	color: ${SECONDARY_COLOR};
-	font-size: ${SMALL_TEXT};
+	font-size: ${SMALL_TEXT_SIZE};
 	margin-top: 5px;
 	display: ${(props) => (props.error ? 'block' : 'none')};
 `

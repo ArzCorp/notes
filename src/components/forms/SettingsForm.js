@@ -1,18 +1,18 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import styled from 'styled-components'
-import useUser from '../../hooks/useUser'
+import { UserContext } from '../../context/UserContext'
 
 import { DARK_COLOR, SECONDARY_COLOR } from '../../assets/colors'
-import { SMALL_TEXT } from '../../assets/fonts'
+import { SMALL_TEXT_SIZE } from '../../assets/fonts'
 
 import Button from '../Button'
 import TextInput from '../TextInput'
 
 const ErrorForm = styled.p`
 	color: ${SECONDARY_COLOR};
-	font-size: ${SMALL_TEXT};
+	font-size: ${SMALL_TEXT_SIZE};
 	margin-top: 10px;
 `
 
@@ -57,16 +57,19 @@ const UserImage = styled.img`
 `
 
 export default function SettingsForm() {
-	const { user, message, update } = useUser()
+	const { user, message, dispatch } = useContext(UserContext)
 	const [image, setImage] = useState('')
 	const file = useRef()
 	const { values, errors, touched, handleChange, handleBlur, handleSubmit } =
 		useFormik({
 			enableReinitialize: true,
 			onSubmit: (data) => {
-				update({
-					...data,
-					userImage: image || user.userImage,
+				dispatch({
+					type: 'user/edit',
+					payload: {
+						...data,
+						userImage: image || user.userImage,
+					},
 				})
 			},
 			initialValues: {

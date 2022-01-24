@@ -1,15 +1,15 @@
-import React, { createContext, useReducer } from 'react'
-import useUser from '../hooks/useUser'
+import React, { createContext, useContext, useReducer } from 'react'
+import { UserContext } from './UserContext'
 
-export const Context = createContext({ value: 'storage' })
+export const CommentsContext = createContext({ value: 'storage' })
 
-export default function CommentsContext({ children }) {
+export default function CommentsProvider({ children }) {
 	const initialState = {
 		comments: [],
 		selectedComment: {},
 	}
 	const date = new Date().toISOString().split('T')[0]
-	const { user } = useUser()
+	const { user } = useContext(UserContext)
 
 	const reducer = (state, action) => {
 		const { payload, type } = action
@@ -83,5 +83,9 @@ export default function CommentsContext({ children }) {
 		dispatch,
 	}
 
-	return <Context.Provider value={state}>{children}</Context.Provider>
+	return (
+		<CommentsContext.Provider value={state}>
+			{children}
+		</CommentsContext.Provider>
+	)
 }

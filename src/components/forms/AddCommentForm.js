@@ -1,22 +1,22 @@
 import React, { useContext } from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
-import { Context } from '../../context/CommentsContext'
+import { CommentsContext } from '../../context/CommentsContext'
 
 import Button from '../Button'
 import styled from 'styled-components'
-import { NORMAL_TEXT, SMALL_TEXT } from '../../assets/fonts'
+import { BIG_TEXT_SIZE, SMALL_TEXT_SIZE } from '../../assets/fonts'
 import { DARK_COLOR, SECONDARY_COLOR } from '../../assets/colors'
 
 const Form = styled.form`
-	font-size: ${NORMAL_TEXT};
+	font-size: ${BIG_TEXT_SIZE};
 	display: flex;
 	align-items: center;
 	gap: 20px;
 `
 
 const Input = styled.input.attrs((props) => ({ type: 'text' }))`
-	font-size: ${NORMAL_TEXT};
+	font-size: ${BIG_TEXT_SIZE};
 	color: ${DARK_COLOR};
 	padding: 10px 30px;
 	border: 1px solid ${DARK_COLOR};
@@ -25,12 +25,12 @@ const Input = styled.input.attrs((props) => ({ type: 'text' }))`
 
 const ErrorForm = styled.p`
 	color: ${SECONDARY_COLOR};
-	font-size: ${SMALL_TEXT};
+	font-size: ${SMALL_TEXT_SIZE};
 	margin: 10px 0px;
 `
 
 export default function CommentForm() {
-	const { dispatch, selectedComment } = useContext(Context)
+	const { dispatch, selectedComment } = useContext(CommentsContext)
 
 	const {
 		values,
@@ -82,9 +82,7 @@ export default function CommentForm() {
 					onChange={handleChange}
 					autoComplete="off"
 					placeholder={
-						selectedComment.message
-							? 'Editar comentario...'
-							: 'Agregar comentario...'
+						selectedComment.message ? 'Editar nota...' : 'Agregar nota...'
 					}
 				/>
 				{errors.comment && touched.comment ? (

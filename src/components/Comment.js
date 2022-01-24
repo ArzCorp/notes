@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
-import { Context } from '../context/CommentsContext'
+import { CommentsContext } from '../context/CommentsContext'
 import styled from 'styled-components'
 import { DARK_COLOR, PRIMARY_COLOR } from '../assets/colors'
-import { NORMAL_TEXT, SMALL_TEXT } from '../assets/fonts'
+import { BIG_TEXT_SIZE, SMALL_TEXT_SIZE } from '../assets/fonts'
 
 const Container = styled.div`
 	width: 500px;
@@ -35,26 +35,26 @@ const Image = styled.img`
 
 const UserName = styled.li`
 	color: ${DARK_COLOR};
-	font-size: ${SMALL_TEXT};
+	font-size: ${SMALL_TEXT_SIZE};
 	font-weight: 700;
 `
 
 const Date = styled.li`
 	color: ${DARK_COLOR};
-	font-size: ${SMALL_TEXT};
+	font-size: ${SMALL_TEXT_SIZE};
 	font-weight: 400;
 `
 
 const CommentContainer = styled.p`
 	color: ${DARK_COLOR};
 	word-break: break-word;
-	font-size: ${NORMAL_TEXT};
+	font-size: ${BIG_TEXT_SIZE};
 	font-weight: 400;
 	margin-top: 10px;
 `
 const Icon = styled.i`
 	color: ${DARK_COLOR};
-	font-size: ${NORMAL_TEXT};
+	font-size: ${BIG_TEXT_SIZE};
 	cursor: pointer;
 	transform: all;
 	transition: 2s;
@@ -64,7 +64,7 @@ const Icon = styled.i`
 `
 
 export default function newComment({ comment }) {
-	const { dispatch } = useContext(Context)
+	const { dispatch } = useContext(CommentsContext)
 	return (
 		<Container>
 			<UserData>
