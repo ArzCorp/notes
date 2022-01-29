@@ -1,8 +1,10 @@
 import React, { createContext, useReducer } from 'react'
+import useLocaleStorage from '../hooks/useLocalStorage'
 
 export const UserContext = createContext({ value: 'storage' })
-
 export default function UserProvider({ children }) {
+	const { updateStorage } = useLocaleStorage('users')
+
 	const initialState = {
 		users: [],
 		user: {},
@@ -14,6 +16,9 @@ export default function UserProvider({ children }) {
 
 		switch (type) {
 			case 'user/add': {
+				const users = state.users.concat(payload)
+				updateStorage(users)
+
 				return {
 					...state,
 					users: state.users.concat(payload),
