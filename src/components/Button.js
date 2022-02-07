@@ -5,6 +5,7 @@ import { NORMAL_TEXT_SIZE } from '../assets/fonts'
 
 const ButtonStyles = styled.button`
 	width: 100%;
+	max-width: 280px;
 	padding: 10px 20px;
 	color: ${DARK_COLOR};
 	border: 1px solid ${DARK_COLOR};

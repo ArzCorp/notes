@@ -5,9 +5,9 @@ import { UserContext } from '../context/UserContext'
 import AddCommentForm from './forms/AddCommentForm'
 
 const Container = styled.div`
-	width: 500px;
+	width: 100%;
+	max-width: 800px;
 	display: flex;
-	align-items: center;
 	justify-content: center;
 	border-radius: 10px;
 	gap: 20px;

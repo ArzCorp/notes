@@ -11,6 +11,8 @@ import { DARK_COLOR, SECONDARY_COLOR } from '../../assets/colors'
 const Form = styled.form`
 	font-size: ${BIG_TEXT_SIZE};
 	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
 	align-items: center;
 	gap: 20px;
 `
@@ -19,6 +21,8 @@ const Input = styled.input.attrs((props) => ({ type: 'text' }))`
 	font-size: ${BIG_TEXT_SIZE};
 	color: ${DARK_COLOR};
 	padding: 10px 30px;
+	width: 100%;
+	max-width: 280px;
 	border: 1px solid ${DARK_COLOR};
 	border-radius: 10px;
 `
